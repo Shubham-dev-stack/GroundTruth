@@ -1,0 +1,123 @@
+@import "tailwindcss";
+@import "maplibre-gl/dist/maplibre-gl.css";
+
+:root {
+  --background: #070B12;
+  --surface-primary: #0D1420;
+  --surface-secondary: #111927;
+  --border-color: #263244;
+  --text-primary: #F4F7FA;
+  --text-secondary: #8D98A8;
+  --accent-lime: #D7FF65;
+  --status-critical: #FF5A52;
+  --status-warning: #F4B740;
+  --status-verified: #55D6A0;
+  --status-uncertainty: #94A3B8;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface-primary: var(--surface-primary);
+  --color-surface-secondary: var(--surface-secondary);
+  --color-border-dark: var(--border-color);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-accent-lime: var(--accent-lime);
+}
+
+body {
+  background: #070B12;
+  color: #F4F7FA;
+  font-family: var(--font-sans), 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Custom crisp dark scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(13, 20, 32, 0.4);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(38, 50, 68, 0.8);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(141, 152, 168, 0.5);
+}
+
+/* MapLibre Dark Container Overrides */
+.maplibregl-canvas {
+  outline: none;
+}
+.maplibregl-ctrl-attrib {
+  display: none !important;
+}
+
+/* Precise mechanical animations */
+.drawer-slide-in {
+  animation: drawerSlide 240ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes drawerSlide {
+  from {
+    transform: translateX(100%);
+    opacity: 0.8;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 300ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fill-transition {
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease;
+}
+
+/* Pulse animation for verified settlement */
+@keyframes settledPulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.15); opacity: 0.9; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.pulse-settled {
+  animation: settledPulse 600ms ease-out;
+}
+
+/* Subtle, imperceptible orbital drift for Earth hero */
+@keyframes celestialFloat {
+  0% {
+    transform: scale(1.36) translate(4%, 0%);
+  }
+  50% {
+    transform: scale(1.375) translate(4.5%, -0.8%);
+  }
+  100% {
+    transform: scale(1.36) translate(4%, 0%);
+  }
+}
+
+.celestial-orbit-drift {
+  animation: celestialFloat 16s ease-in-out infinite;
+  will-change: transform;
+}
